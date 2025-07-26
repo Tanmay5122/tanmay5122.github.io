@@ -6,6 +6,458 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SCORVEN | Explore</title>
   <link rel="stylesheet" href="explore.css" />
+  <style>
+    /* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #000000;
+  scroll-behavior: smooth;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-top: 5px;
+  font-size: 13.5px;
+  color: white;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#navbar.scrolled {
+  transform: translateY(-5px);
+  background: rgba(0, 0, 0, 0.444);
+}
+
+.logo {
+  font-size: 1.25rem;
+  margin-left: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  height: 790px;
+  position: relative;
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+  background: radial-gradient(circle at center, #2f2f2f 10%, #060606 100%);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  z-index: 0;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: url(https://media.istockphoto.com/id/475391923/photo/predator-drone.jpg?s=2048x2048&w=is&k=20&c=peWW6eK_3Vnxlixo5jE48xVlgx7INpo1ga5n_18JabQ=) no-repeat center center / cover;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation: fadeIn 1s ease-in-out 1s forwards;
+  z-index: 0;
+}
+
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-content h1 {
+  top: 85%;
+  font-size: 40px;
+  background: linear-gradient(90deg, #00fff7, #4facfe);
+  background-size: 200% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.hero-content p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  justify-content: center;
+  line-height: 1.5;
+}
+
+/* Intro Section */
+.intro {
+  justify-content: center;
+  gap: 5rem;
+  height: 80%;
+  background: linear-gradient(to right, #000 30%, #a7b0b01b);
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 1.5rem;
+}
+
+.tittle {
+  margin-top: 10px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  font-size: 1.5rem;
+  background: linear-gradient(to right, #000 30%, #a7b0b01b);
+}
+
+.intro h4 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.intro p {
+  max-width: 600px;
+  line-height: 1.6;
+  color: rgb(255, 255, 255);
+  text-align: justify;
+}
+
+/* Image Styling */
+.image img {
+  margin-right: 50px;
+  max-width: 650px;
+  width: 100%;
+  height: 350px;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Details Section */
+.details {
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  width: 700px;
+  height: 600px;
+  margin: 2rem 1%;
+  text-align: justify;
+}
+
+/* Other Sections */
+.importance,
+.features {
+  text-align: justify;
+  width: 700px;
+  margin: 2rem auto;
+  color: white;
+}
+
+h4 {
+  color: #1563ac;
+}
+
+b {
+  color: rgb(20, 162, 162);
+}
+
+/* Section Wrapper */
+sections {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+h2 {
+  margin-top: 14px;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+/* Infinite Looping Image Slider */
+.loop-slider {
+  width: 100%;
+  overflow: hidden;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.slide-track {
+  display: flex;
+  width: calc(220px * 20);
+  animation: scrollLoop 46s linear infinite;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 220px;
+  margin: 0 4px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+  background-color: #111;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 360px;
+}
+
+.slide img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+  filter: brightness(0.95) contrast(1.2);
+}
+
+.slide>p {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fffcfc;
+  text-align: center;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.slide:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Tech Specs */
+.tech-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.spec-item h3 {
+  color: #4facfe;
+  margin-bottom: 0.5rem;
+}
+
+.spec-item p {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Footer */
+footer {
+  padding: 2rem;
+  background: linear-gradient(45deg, #111 0%, #000 100%);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  border-top: 1px solid rgb(101, 109, 107);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03), transparent 100%);
+  animation: rotate 25s linear infinite;
+  z-index: 0;
+}
+
+footer p,
+footer a {
+  font-family: sans-serif;
+  position: relative;
+  z-index: 1;
+  font-size: 0.78rem;
+  color: #ffffff;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #4facfe;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .intro {
+    width: 90%;
+    text-align: center;
+  }
+
+  .intro p {
+    max-width: 100%;
+  }
+
+  .crowd img {
+    max-width: 100%;
+  }
+
+  .details,
+  .importance,
+  .features {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .slide {
+    width: 180px;
+  }
+
+  .slide-track {
+    width: calc(180px * 20);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  section {
+    padding: 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .slide {
+    width: 140px;
+  }
+
+  .slide-track {
+    width: calc(140px * 20);
+  }
+}
+  </style>
 </head>
 
 <body>
