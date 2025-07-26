@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCORVEN</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Base Reset & Layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: 'Segoe UI', sans-serif;
+  height: 100%;
+  scroll-behavior: smooth;
+  background-color: black;
+}
+
+/* Navbar */
+#navbar {
+  position: fixed;
+  width: 100%;
+  font-size: 13.5px;
+  top: 0;
+  z-index: 100;
+  padding: 20px 40px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: white;
+  left: 0;
+  bottom: -4px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.scrolled {
+  background: white;
+  box-shadow: 0 4px 12px rgba(160, 8, 8, 0.1);
+}
+
+.scrolled .logo,
+.scrolled .nav-links a {
+  color: black;
+}
+
+.scrolled .nav-links a::after {
+  background: black;
+}
+
+/* Hero Section and Slider */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  height: 100%;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  height: 100vh;
+  position: relative;
+}
+
+.slide video,
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.nav_slider {
+  display: flex;
+  column-gap: 1rem;
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.nav_slider a {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.7;
+  transition: opacity ease 250ms;
+}
+
+.nav_slider a:hover {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-content {
+  margin-top: 6cm;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+  text-align: center;
+  padding: 0 10px;
+}
+
+@import url('https://api.fontshare.com/v2/css?f[]=neue-montreal@400,600,700&display=swap');
+
+.hero-content h2 {
+  font-family: 'Neue Montreal', sans-serif;
+  font-size: 60px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.hero-content p {
+  font-size: 25px;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+.delay {
+  animation-delay: 0.6s;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 10%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: white;
+  margin: auto;
+  padding: 2rem;
+  width: 300px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.modal-content button {
+  padding: 0.5rem 1rem;
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+footer {
+  padding: 2rem;
+  background: linear-gradient(45deg, #111 0%, #000 100%);
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  border-top: 1px solid rgb(101, 109, 107);
+  background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 100%);
+  animation: rotate 25s linear infinite;
+  z-index: 0;
+}
+
+footer p, footer a {
+  position: relative;
+  margin-top: 5px;
+  z-index: 1;
+  color: #ccc;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #4facfe;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔧 Responsive Design */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: flex-start; 
+  }
+
+  .nav-links {
+    flex-direction: row;
+    gap: 15px;
+    padding-top: 1px;
+  }
+
+  .hero-content h2 {
+    font-size: 26px;
+    margin-top: 2.5cm;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h2 {
+    margin-top: 2cm;
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .nav_slider a {
+    width: 10px;
+    height: 10px;
+  }
+
+  #navbar {
+    padding: 10px 20px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">SCORVEN</div>
+      <ul class="nav-links">
+        <li><a href="register.html">Explore</a></li>
+        <!-- <li><a href="#">NeuroScan</a></li> -->
+        <!-- <li><a href="#">DashHQ</a></li> -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Slider -->
+  <section class="hero">
+    <div class="slider-wrapper">
+      <div class="slider">
+        <div class="slide" id="slide1">
+          <video autoplay loop muted playsinline>
+            <source src="Rolex.video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="slide" id="slide2">
+          <img
+            src="https://cdn3.mage.space/temp/30d/creations/GB2Y8H6moccS1tJ8018HZeOYbQl2/image/8669776ae5aa0da26328be8dcced3656.jpg"
+            alt="Drone 4K" />
+        </div>
+        <div class="slide" id="slide3">
+          <img
+            src="https://cdn3.mage.space/temp/30d/creations/GB2Y8H6moccS1tJ8018HZeOYbQl2/image/0f092c6adee32ef798ad70c2f505a07d.jpg"
+            alt="Drone High-Res" />
+        </div>
+        <div class="slide" id="slide4">
+          <img
+            src="https://cdn3.mage.space/temp/30d/creations/GB2Y8H6moccS1tJ8018HZeOYbQl2/image/185d7a8e6bfbb97f21bc9ac76b0c40b8.jpg"
+            alt="Drone High-Res" />
+        </div>
+        <div class="slide" id="slide5">
+          <img
+            src="https://cdn3.mage.space/temp/30d/creations/GB2Y8H6moccS1tJ8018HZeOYbQl2/image/660f7bc7484c2ae5c3b7f9248598f444.jpg"
+            alt="Drone High-Res" />
+        </div>
+      </div>
+      <div class="nav_slider">
+        <a href="#slide1"></a>
+        <a href="#slide2"></a>
+        <a href="#slide3"></a>
+        <a href="#slide4"></a>
+        <a href="#slide5"></a>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h2 class="fade-in">Redefine Flight</h2>
+      <p class="fade-in delay">Experience unmatched control and clarity</p>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2025 SCORVEN | All Rights Reserved</p>
+    <p>Contact: scorven.innovations22@gmail.com</p>
+    <p>Instagram: <a href="https://instagram.com/Scorven Innovations" target="_blank" rel="noopener">Scorven
+        Innovations</a></p>
+  </footer>
+  <script src="server.js"></script>
+</body>
+
+</html>
