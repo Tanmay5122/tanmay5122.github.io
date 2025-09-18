@@ -1,164 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Register</title>
-  <link rel="stylesheet" href="styleauth.css" />
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <style>
-    /* Set full-page background image */
-body {
-  font-family: Arial, sans-serif;
-  background: url('https://cdn3.mage.space/temp/30d/creations/GB2Y8H6moccS1tJ8018HZeOYbQl2/image/4384e2299ecec4df75cf6983b05f9e12.jpg') no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-/* Frosted glass container */
-.container {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.967);
-  width: 50%;
-  max-width: 250px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-/* Glow effect for h2 on hover */
-.container h2 {
-  transition: all 0.3s ease;
-  color: #ffffff;
-  text-align: center;
-}
-
-.container h2:hover {
-  color: hsl(172, 100%, 51%);
-  text-shadow: 0 0 7px #06394094, 0 0 10px #07d6bab7, 0 0 30px #00e1ffa8;
-  transform: scale(1.05);
-}
-
-/* Box styling */
-.box {
-  background: rgba(6, 6, 6, 0.889);
-  max-width: 250px;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 55px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/*Login with google box*/
-.login {
-  background-color: rgba(6, 6, 6, 0.838);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 25px;
-  width: fit-content;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(118, 0, 210, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: pulseGlow 2s infinite alternate;
-}
-
-.login a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: all 0.3s ease;
-  font-size: 16px;
-}
-
-.login:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px #9a00ff, 0 0 20px #c300ff, 0 0 40px #f200ff;
-}
-
-.login a:hover {
-  color: #fde1ff;
-  text-shadow: 0 0 5px #f200ff, 0 0 10px #c300ff, 0 0 20px #9a00ff;
-}
-
-/* Optional animated pulse glow */
-@keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 8px rgba(255, 0, 255, 0.4);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
-  }
-}
-
-/* Input & button styles */
-input, button {
-  display: block;
-  width: 100%;
-  margin-bottom: 1.2rem;
-  padding: 0.85rem 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input {
-  background: rgba(255, 255, 255, 0.3);
-  color: #fff;
-  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
-}
-
-input::placeholder {
-  color: #e0e0e0;
-}
-
-input:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 8px #007BFF;
-  color: #000;
-}
-
-button {
-  background-color: #007BFF;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 123, 255, 0.4);
-}
-
-button:hover {
-  background-color: #0056b3;
-  box-shadow: 0 6px 20px rgba(0, 86, 179, 0.6);
-}
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCORVEN | Sign Up</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+        .signup-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        .signup-container h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .signup-container button:hover {
+            background-color: #0056b3;
+        }
+        .signup-container a {
+            display: block;
+            margin-top: 1rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="box">
-      <h2>Get Started</h2>
+    <div class="signup-container">
+        <h2>Create an Account</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <a href="/login.html">Already have an account? Log In</a>
     </div>
-    <div class="login">
-      <a href="/auth/google">Login with Google</a>
-    </div>
-  </div>
-  <script src="server.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('registrationForm');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch('/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const responseData = await response.json();
+
+                    if (response.ok) {
+                        if (responseData.redirect) {
+                            window.location.href = responseData.redirect;
+                        } else {
+                            // Handle successful but non-redirect response
+                            alert('Registration successful!');
+                        }
+                    } else {
+                        // Handle server-side errors (e.g., username taken)
+                        alert(responseData.message || 'Registration failed. Please try again.');
+                    }
+                } catch (error) {
+                    // Handle network or other unexpected errors
+                    console.error('Registration failed:', error);
+                    alert('An unexpected error occurred. Please try again.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
