@@ -1,0 +1,17 @@
+// db.js
+const { Low } = require('lowdb');
+const { JSONFile } = require('lowdb/node');
+
+const adapter = new JSONFile('db.json');
+const db = new Low(adapter);
+
+// Create db.json with default if it doesn't exist
+async function initDB() {
+  await db.read();
+  db.data ||= { users: [] };
+  await db.write();
+}
+
+initDB();
+
+module.exports = db;
