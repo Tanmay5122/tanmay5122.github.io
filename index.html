@@ -1020,6 +1020,62 @@ footer a:hover {
     });
 
   </script>
+  
+<!-- In your <head> tag -->
+<script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"></script>
+<style>
+  #webchat .bpWebchat {
+    position: unset;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  #webchat .bpFab {
+    display: none;
+  }
+</style>
+
+<!-- Put this on your page BEFORE the script below -->
+<div id="webchat" style="width: 500px; height: 500px;"></div>
+
+<!-- In your <body> tag -->
+<script>
+  window.botpress.on("webchat:ready", () => {
+    window.botpress.open();
+  });
+  window.botpress.init({
+  "botId": "fe8a030c-825b-444c-aad7-07b56f513459",
+  "configuration": {
+    "version": "v2",
+    "botName": "Your Brand Assistant",
+    "botAvatar": "https://files.bpcontent.cloud/2025/10/11/06/20251011064605-G3FW5GTI.png",
+    "botDescription": "",
+    "website": {},
+    "email": {},
+    "phone": {},
+    "termsOfService": {},
+    "privacyPolicy": {},
+    "color": "#00ab6c",
+    "variant": "solid",
+    "headerVariant": "glass",
+    "themeMode": "light",
+    "fontFamily": "inter",
+    "radius": 1,
+    "feedbackEnabled": false,
+    "footer": "[⚡ by Botpress](https://botpress.com/?from=webchat)",
+    "soundEnabled": false,
+    "proactiveMessageEnabled": false,
+    "proactiveBubbleMessage": "Hi! 👋 Need help?",
+    "proactiveBubbleTriggerType": "afterDelay",
+    "proactiveBubbleDelayTime": 10
+  },
+  "clientId": "625c612b-da44-430b-a29b-fc0c557fcc02",
+  "selector": "#webchat"
+});
+</script>
+
 </body>
 
 </html>
